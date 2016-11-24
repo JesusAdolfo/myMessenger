@@ -14,10 +14,12 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
     
     var friend: Friend? {
         didSet {
+            //sets the title of the ChatLogController to the current's friend name
             navigationItem.title = friend?.name
-            
+            //gets the messages from this friend and sets them to the messages variable below
             messages = friend?.messages?.allObjects as? [Message]
             
+            //we apply again the same sort we had before
             messages = messages?.sorted(by: {$0.date!.compare($1.date! as Date) == .orderedAscending})
         }
     }
@@ -177,6 +179,8 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
         messageInputContainerView.addConstraintsWithFormat("V:|[v0(0.5)]|", views: topBorderView)
     }
     
+    
+    //returns the numbers of cells (messages in this case) that this collecion has
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let count = messages?.count{
             return count
@@ -184,10 +188,12 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
         return 0
     }
     
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ChatLogMessageCell
         
+        //gets the correct message from the array and presents it to this cell
         cell.messageTextView.text = messages?[indexPath.item].text
         
         if let message = messages?[indexPath.item], let messageText = message.text, let profileImageName = message.friend?.profileImageName {
@@ -235,6 +241,7 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
         return cell
     }
     
+    //modifies each cell in this collectionView (in this case it will be each chat bubble)
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if let messageText = messages?[indexPath.item].text {
@@ -292,6 +299,7 @@ class ChatLogMessageCell: BaseCell {
     override func setupViews() {
         super.setupViews()
         
+        //addSubview adds the parameter view to the hierarchy
         addSubview(textBubbleView)
         addSubview(messageTextView)
         addSubview(profileImageView)

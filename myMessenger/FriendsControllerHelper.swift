@@ -55,10 +55,13 @@ extension FriendsController {
     
     func setupData(){
         
+        
+        //clearing the data to avoid duplicates from CoreData saved objects
         clearData()
         
+        //we need this delegate to create the context
         let delegate = UIApplication.shared.delegate as? AppDelegate
-        
+        //then we get the context
         if let context = delegate?.managedObjectContext{
             let nikola = NSEntityDescription.insertNewObject(forEntityName: "Friend", into: context) as! Friend
             
@@ -81,7 +84,9 @@ extension FriendsController {
             
             FriendsController.createMessageWithText("I will beat Tesla!!", friend: edison, minutesAgo: 8 * 60 * 24 , context: context)
 
-            
+            //we save the core data on memory
+            //this way the objects are not created every time we run the UIApplication
+            //however, we need to do a do.. catch because context.save throws errors
             do{
                 try(context.save())
             }catch let err {
@@ -116,11 +121,13 @@ extension FriendsController {
         FriendsController.createMessageWithText("Nonsense! that is a foolish thought. There is no way to escape our destiny. If you knew a little bit about science you would know that   ", friend: albert, minutesAgo: 2, context: context)
     }
     
-    static func createMessageWithText(_ text: String, friend: Friend, minutesAgo: Double, context: NSManagedObjectContext, isSender: Bool = false) -> Message{
+    static func createMessageWithText(text: String, friend: Friend, minutesAgo: Double, context: NSManagedObjectContext, isSender: Bool = false) -> Message{
         
         let message = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
         message.friend = friend
         message.text = text
+        
+        // addingTimeInterval takes the time in seconds so we multiply by 60
         message.date = Date().addingTimeInterval(-minutesAgo * 60)
         message.isSender = NSNumber(value: isSender as Bool)
         return message
@@ -131,30 +138,42 @@ extension FriendsController {
         
         if let context = delegate?.managedObjectContext {
             
+            
+            //we use if let because fetchFriends could return nil
             if let friends = fetchFriends(){
                 
                 messages = [Message]()
                 
                 for friend in friends {
                     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Message")
+                    
+                    //we create a sortDescriptor and pass the key/property that we want to use to sort the array
+                    //this only sorts the messages of the same friend
                     fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+                    //filter by name using a predicate
                     fetchRequest.predicate = NSPredicate(format: "friend.name = %@", friend.name!)
+                    //to get the only the latest message we set the fetchLimit to 1
                     fetchRequest.fetchLimit = 1
+                    
                     do{
                         
                         let fetchedMessages = try(context.fetch(fetchRequest)) as? [Message]
+                        //we use append to avoid overwriting messages
                         messages?.append(contentsOf: fetchedMessages!)
                         
                     } catch let err {
                         print(err)
                     }
                 }
+                
+                //sorts the list of messages
                 messages = messages?.sorted(by: {$0.date!.compare($1.date! as Date) == .orderedDescending})
             }
             
         }
     }
     
+    //function that returns an optional array of friends
     fileprivate func fetchFriends() -> [Friend]?{
         let delegate = UIApplication.shared.delegate as? AppDelegate
         
