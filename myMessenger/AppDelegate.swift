@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let friendsController = FriendsController(collectionViewLayout: layout)
 //        window?.rootViewController = UINavigationController(rootViewController: friendsController)
         
+        
+        //adding the TabBarController 
         window?.rootViewController = CustomTabBarController()
         
 //        // Override point for customization after application launch.

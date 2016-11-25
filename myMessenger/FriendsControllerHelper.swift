@@ -105,23 +105,21 @@ extension FriendsController {
         FriendsController.createMessageWithText("Hello, some people think that I am the smartest person to ever live but that is not true", friend: albert, minutesAgo: 4, context: context)
         FriendsController.createMessageWithText("I was no even the smartest man in my era. When asked what does it feel to be the smartest man alive, I said 'I don't know you must ask that to Tesla'", friend: albert, minutesAgo: 3,context: context)
         FriendsController.createMessageWithText("e=mc^2", friend: albert, minutesAgo: 2, context: context)
-        
         //response message
         FriendsController.createMessageWithText("uh?", friend: albert, minutesAgo: 2, context: context, isSender: true)
         
         FriendsController.createMessageWithText("I knew you were there, why you didn't text me back before?", friend: albert, minutesAgo: 2, context: context)
-        
         //response message
         FriendsController.createMessageWithText("Ummm, do I know you buddy?", friend: albert, minutesAgo: 2, context: context, isSender: true)
-        
         //response message
         FriendsController.createMessageWithText("Ohhh, I remember now. But aren't you dead? Or did your intelligence allowed you to find a way to live much longer than us mortals?", friend: albert, minutesAgo: 2, context: context, isSender: true)
-        
         
         FriendsController.createMessageWithText("Nonsense! that is a foolish thought. There is no way to escape our destiny. If you knew a little bit about science you would know that   ", friend: albert, minutesAgo: 2, context: context)
     }
     
-    static func createMessageWithText(text: String, friend: Friend, minutesAgo: Double, context: NSManagedObjectContext, isSender: Bool = false) -> Message{
+    //isSender is an optional value set to False by default
+    //set to static so we can expose it and use it in other classes by doing FriendsController.createMessageWithText 
+    static func createMessageWithText(_ text: String, friend: Friend, minutesAgo: Double, context: NSManagedObjectContext, isSender: Bool = false) -> Message{
         
         let message = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
         message.friend = friend

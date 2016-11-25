@@ -17,10 +17,14 @@ class FriendsController: UICollectionViewController, UICollectionViewDelegateFlo
     var messages: [Message]?
     
     
+    //this method is called everytime we come back to this screen 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tabBarController?.tabBar.isHidden = false 
+        
+        //calls our tabBar controller when we move back to this view
+        tabBarController?.tabBar.isHidden = false
+        
     }
     
     override func viewDidLoad() {
@@ -84,7 +88,9 @@ class MessageCell: BaseCell{
     
     override var isHighlighted: Bool{
         didSet {
+            //highlights the cell to blue when it is being clicked
             backgroundColor = isHighlighted ? UIColor(red: 0, green: 134/255, blue: 249/255, alpha: 1) : UIColor.white
+            //changes the labels to white when the cell is being clicked. otherwise it will be black
             nameLabel.textColor = isHighlighted ? UIColor.white : UIColor.black
             timeLabel.textColor = isHighlighted ? UIColor.white : UIColor.black
             messageLabel.textColor = isHighlighted ? UIColor.white : UIColor.black
@@ -110,8 +116,12 @@ class MessageCell: BaseCell{
                 
                 let elapsedTimeInSeconds = Date().timeIntervalSince(date as Date)
                 
+                
+                //60 seconds times 60 minutes times 24 hours
                 let secondInDays: TimeInterval = 60 * 60 * 24
                 
+                //if it is older than 1 week (7 days) then we set a dare in MM/dd/yy to the message
+                //otherwise we use the "EEE" dateFormat which returns Mon, Tue, Wed, Thu, Fri, Sat, Sun
                 if elapsedTimeInSeconds > 7 * secondInDays {
                     dateFormatter.dateFormat = "MM/dd/yy"
                 } else if elapsedTimeInSeconds > secondInDays {

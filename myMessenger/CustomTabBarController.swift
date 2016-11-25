@@ -12,7 +12,8 @@ class CustomTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        //setup or custom view controller
         let layout = UICollectionViewFlowLayout()
         let friendsController = FriendsController(collectionViewLayout: layout)
         let recentMessagesNavController = UINavigationController(rootViewController: friendsController)
