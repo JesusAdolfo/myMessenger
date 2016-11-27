@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B024CD2D1CB81645009D0069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024CD2C1CB81645009D0069 /* AppDelegate.swift */; };
-		B024CD2F1CB81645009D0069 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024CD2E1CB81645009D0069 /* ViewController.swift */; };
+		B024CD2F1CB81645009D0069 /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024CD2E1CB81645009D0069 /* FriendsController.swift */; };
 		B024CD351CB81645009D0069 /* myMessenger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B024CD331CB81645009D0069 /* myMessenger.xcdatamodeld */; };
 		B024CD3A1CB81645009D0069 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B024CD381CB81645009D0069 /* LaunchScreen.storyboard */; };
 		B024CD421CB85EC5009D0069 /* FriendsControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024CD411CB85EC5009D0069 /* FriendsControllerHelper.swift */; };
@@ -24,7 +24,7 @@
 /* Begin PBXFileReference section */
 		B024CD291CB81645009D0069 /* myMessenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myMessenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B024CD2C1CB81645009D0069 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B024CD2E1CB81645009D0069 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B024CD2E1CB81645009D0069 /* FriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
 		B024CD341CB81645009D0069 /* myMessenger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = myMessenger.xcdatamodel; sourceTree = "<group>"; };
 		B024CD391CB81645009D0069 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B024CD3B1CB81645009D0069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -69,7 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				B024CD2C1CB81645009D0069 /* AppDelegate.swift */,
-				B024CD2E1CB81645009D0069 /* ViewController.swift */,
+				B024CD2E1CB81645009D0069 /* FriendsController.swift */,
 				B024CD381CB81645009D0069 /* LaunchScreen.storyboard */,
 				B024CD3B1CB81645009D0069 /* Info.plist */,
 				B024CD331CB81645009D0069 /* myMessenger.xcdatamodeld */,
@@ -160,7 +160,7 @@
 				B024CD541CB9A706009D0069 /* ChatLogController.swift in Sources */,
 				B024CD511CB94940009D0069 /* Message+CoreDataProperties.swift in Sources */,
 				B0354E931CC35001000A2FBE /* CustomTabBarController.swift in Sources */,
-				B024CD2F1CB81645009D0069 /* ViewController.swift in Sources */,
+				B024CD2F1CB81645009D0069 /* FriendsController.swift in Sources */,
 				B024CD351CB81645009D0069 /* myMessenger.xcdatamodeld in Sources */,
 				B024CD4F1CB94940009D0069 /* Friend+CoreDataProperties.swift in Sources */,
 				B024CD501CB94940009D0069 /* Friend.swift in Sources */,
